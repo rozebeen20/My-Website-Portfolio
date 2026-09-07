@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+server/node_modules/
+
+# Build output
+dist/
+dist-ssr/
+
+# Environment variables - NEVER commit real credentials
+.env
+server/.env
+.env.local
+.env.production
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
