@@ -18,7 +18,7 @@ export default function Contact() {
     const timeoutId = setTimeout(() => controller.abort(), 20000)
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('https://my-website-portfolio-w8eu.onrender.com/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, message, website }),
@@ -136,8 +136,8 @@ export default function Contact() {
               {isSending
                 ? 'Sending...'
                 : isSubmitted
-                ? "Message sent - I'll be in touch soon"
-                : 'Send Message'}
+                  ? "Message sent - I'll be in touch soon"
+                  : 'Send Message'}
             </button>
           </form>
 
