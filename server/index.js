@@ -133,7 +133,6 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
   const ipv4Addr = await resolveIPv4('smtp.gmail.com')
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
     host: ipv4Addr,
     port: 465,
     secure: true,
