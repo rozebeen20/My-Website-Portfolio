@@ -7,7 +7,14 @@ import validator from 'validator'
 import rateLimit from 'express-rate-limit'
 import fs from 'node:fs'
 import path from 'node:path'
+import dns from 'node:dns'
 import { fileURLToPath } from 'node:url'
+
+// Prefer IPv4 for all hostname lookups. Gmail's IPv6 (2404:6800:...) endpoints
+// are unreachable from some hosting providers (e.g. Render), which made the
+// Nodemailer SMTP connection fail with ETIMEDOUT. This keeps the IPv6 fallback
+// available when it works, while trying IPv4 first.
+dns.setDefaultResultOrder('ipv4first')
 
 const serverDir = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.resolve(serverDir, '..')
@@ -112,8 +119,6 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
     dateStyle: 'full',
     timeStyle: 'long',
   }).format(new Date())
-  console.log('GMAIL_USER:', GMAIL_USER);
-  console.log('has app password', GMAIL_APP_PASSWORD)
   if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
     console.error(`Missing GMAIL_USER or GMAIL_APP_PASSWORD in ${path.join('server', '.env')}`)
     return res.status(500).json({
@@ -124,6 +129,10 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    family: 4,
     auth: {
       user: GMAIL_USER,
       pass: GMAIL_APP_PASSWORD,
