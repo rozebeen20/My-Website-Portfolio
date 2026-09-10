@@ -2,22 +2,12 @@ import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import dotenv from 'dotenv'
-import nodemailer from 'nodemailer'
+import { Resend } from 'resend'
 import validator from 'validator'
 import rateLimit from 'express-rate-limit'
 import fs from 'node:fs'
 import path from 'node:path'
-import dns from 'node:dns/promises'
 import { fileURLToPath } from 'node:url'
-
-// Resolve a hostname to its first IPv4 address so Nodemailer connects over
-// IPv4 only. On platforms where AAAA records resolve to unreachable IPv6
-// addresses (e.g. Render), this prevents ENETUNREACH / ETIMEDOUT errors.
-async function resolveIPv4(hostname) {
-  const addrs = await dns.resolve4(hostname)
-  if (!addrs.length) throw new Error(`No IPv4 address found for ${hostname}`)
-  return addrs[0]
-}
 
 const serverDir = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.resolve(serverDir, '..')
@@ -33,6 +23,12 @@ const EMAIL_TO = process.env.EMAIL_TO || 'rozebeen.20@gmail.com'
 const GMAIL_USER = process.env.GMAIL_USER || ''
 const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || ''
 const EMAIL_FROM = process.env.EMAIL_FROM || GMAIL_USER
+const RESEND_API_KEY = process.env.RESEND_API_KEY || ''
+const RESEND_FROM = process.env.RESEND_FROM || '"Portfolio Contact" <onboarding@resend.dev>'
+
+// Resend delivers email over HTTPS, so it works on hosts that block outbound
+// SMTP (e.g. Render Free). Created once; fails at send time if the key is missing.
+const resend = new Resend(RESEND_API_KEY)
 
 // The exact origin(s) allowed to talk to this API. Never "*".
 const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175']
@@ -122,74 +118,60 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
     dateStyle: 'full',
     timeStyle: 'long',
   }).format(new Date())
-  if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
-    console.error(`Missing GMAIL_USER or GMAIL_APP_PASSWORD in ${path.join('server', '.env')}`)
+  if (!RESEND_API_KEY) {
+    console.error(`Missing RESEND_API_KEY in ${path.join('server', '.env')}`)
     return res.status(500).json({
       success: false,
       error: 'Server email is not configured. Please contact the site owner directly.',
     })
   }
 
-  const ipv4Addr = await resolveIPv4('smtp.gmail.com')
-
-  const transporter = nodemailer.createTransport({
-    host: ipv4Addr,
-    port: 465,
-    secure: true,
-    auth: {
-      user: GMAIL_USER,
-      pass: GMAIL_APP_PASSWORD,
-    },
-    tls: { servername: 'smtp.gmail.com' },
-    // Hard timeouts so the SMTP connection can never stall the request forever.
-    connectionTimeout: 10 * 1000,
-    socketTimeout: 15 * 1000,
-    greetingTimeout: 10 * 1000,
-  })
-
-  const mailOptions = {
-    from: `"Portfolio Contact" <${EMAIL_FROM}>`,
-    to: EMAIL_TO,
-    replyTo: safeEmail,
-    subject: 'New Contact Form Submission',
-    html: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="margin-bottom: 4px;">New Contact Form Submission</h2>
-        <p style="color: #666; margin-top: 0;">From your portfolio website</p>
-        <hr style="border: none; border-top: 1px solid #eee; margin: 16px 0;" />
-        <table style="width: 100%; border-collapse: collapse;">
-          <tr>
-            <td style="padding: 8px 0; color: #999; width: 90px;"><strong>Name</strong></td>
-            <td style="padding: 8px 0;">${safeName}</td>
-          </tr>
-          <tr>
-            <td style="padding: 8px 0; color: #999; width: 90px;"><strong>Email</strong></td>
-            <td style="padding: 8px 0;">
-              <a href="mailto:${safeEmail}" style="color: #147efb;">${safeEmail}</a>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding: 8px 0; color: #999; width: 90px; vertical-align: top;"><strong>Message</strong></td>
-            <td style="padding: 8px 0;">${safeMessage}</td>
-          </tr>
-          <tr>
-            <td style="padding: 8px 0; color: #999; width: 90px;"><strong>Submitted</strong></td>
-            <td style="padding: 8px 0;">${submittedAt}</td>
-          </tr>
-        </table>
-        <hr style="border: none; border-top: 1px solid #eee; margin: 16px 0;" />
-        <p style="color: #999; font-size: 12px;">Sent via your portfolio contact form.</p>
-      </div>
-    `,
-  }
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="margin-bottom: 4px;">New Contact Form Submission</h2>
+      <p style="color: #666; margin-top: 0;">From your portfolio website</p>
+      <hr style="border: none; border-top: 1px solid #eee; margin: 16px 0;" />
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+          <td style="padding: 8px 0; color: #999; width: 90px;"><strong>Name</strong></td>
+          <td style="padding: 8px 0;">${safeName}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; color: #999; width: 90px;"><strong>Email</strong></td>
+          <td style="padding: 8px 0;">
+            <a href="mailto:${safeEmail}" style="color: #147efb;">${safeEmail}</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; color: #999; width: 90px; vertical-align: top;"><strong>Message</strong></td>
+          <td style="padding: 8px 0;">${safeMessage}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; color: #999; width: 90px;"><strong>Submitted</strong></td>
+          <td style="padding: 8px 0;">${submittedAt}</td>
+        </tr>
+      </table>
+      <hr style="border: none; border-top: 1px solid #eee; margin: 16px 0;" />
+      <p style="color: #999; font-size: 12px;">Sent via your portfolio contact form.</p>
+    </div>
+  `
 
   // Wrap the send in a hard deadline so the handler always responds to the
-  // client even if the SMTP connection stalls.
+  // client even if the Resend API request stalls.
   const SEND_TIMEOUT_MS = 20 * 1000
 
   try {
     await Promise.race([
-      transporter.sendMail(mailOptions),
+      (async () => {
+        const { error } = await resend.emails.send({
+          from: RESEND_FROM,
+          to: [EMAIL_TO],
+          reply_to: safeEmail,
+          subject: 'New Contact Form Submission',
+          html,
+        })
+        if (error) throw error
+      })(),
       new Promise((_, reject) =>
         setTimeout(() => reject(new Error('Email send timed out')), SEND_TIMEOUT_MS)
       ),
