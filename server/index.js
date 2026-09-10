@@ -7,14 +7,17 @@ import validator from 'validator'
 import rateLimit from 'express-rate-limit'
 import fs from 'node:fs'
 import path from 'node:path'
-import dns from 'node:dns'
+import dns from 'node:dns/promises'
 import { fileURLToPath } from 'node:url'
 
-// Prefer IPv4 for all hostname lookups. Gmail's IPv6 (2404:6800:...) endpoints
-// are unreachable from some hosting providers (e.g. Render), which made the
-// Nodemailer SMTP connection fail with ETIMEDOUT. This keeps the IPv6 fallback
-// available when it works, while trying IPv4 first.
-dns.setDefaultResultOrder('ipv4first')
+// Resolve a hostname to its first IPv4 address so Nodemailer connects over
+// IPv4 only. On platforms where AAAA records resolve to unreachable IPv6
+// addresses (e.g. Render), this prevents ENETUNREACH / ETIMEDOUT errors.
+async function resolveIPv4(hostname) {
+  const addrs = await dns.resolve4(hostname)
+  if (!addrs.length) throw new Error(`No IPv4 address found for ${hostname}`)
+  return addrs[0]
+}
 
 const serverDir = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.resolve(serverDir, '..')
@@ -127,16 +130,18 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
     })
   }
 
+  const ipv4Addr = await resolveIPv4('smtp.gmail.com')
+
   const transporter = nodemailer.createTransport({
     service: 'gmail',
-    host: 'smtp.gmail.com',
+    host: ipv4Addr,
     port: 465,
     secure: true,
-    family: 4,
     auth: {
       user: GMAIL_USER,
       pass: GMAIL_APP_PASSWORD,
     },
+    tls: { servername: 'smtp.gmail.com' },
     // Hard timeouts so the SMTP connection can never stall the request forever.
     connectionTimeout: 10 * 1000,
     socketTimeout: 15 * 1000,
