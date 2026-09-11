@@ -1,5 +1,5 @@
 import { ArrowUp } from 'lucide-react'
-import { footerServices } from '../data'
+import { footerLinks } from '../data'
 
 export default function Footer() {
   return (
@@ -8,22 +8,25 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
             <span className="text-2xl font-display font-bold tracking-tight text-white">
-              STUDIO<span className="text-accent-400">.</span>
+              RB CATS
             </span>
             <p className="mt-4 text-sm text-ink-400 leading-relaxed max-w-sm">
-              A full-service creative studio designing brands that command attention. Web, e-commerce,
-              advertising, video, 3D, and digital strategy.
+              DTC Growth &bull; Funnels &bull; Web &bull; Creative
             </p>
           </div>
 
           <div>
             <p className="text-[10px] font-semibold text-accent-400 tracking-widest uppercase mb-4">
-              Services
+              Navigate
             </p>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-              {footerServices.map((service) => (
-                <a key={service} href="#portfolio" className="text-sm text-ink-400 hover:text-white transition-colors">
-                  {service}
+            <div className="flex flex-col gap-2">
+              {footerLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm text-ink-400 hover:text-white transition-colors"
+                >
+                  {link.label}
                 </a>
               ))}
             </div>
@@ -34,17 +37,11 @@ export default function Footer() {
               Connect
             </p>
             <div className="flex flex-col gap-2">
-              <a href="#contact" className="text-sm text-ink-400 hover:text-white transition-colors">
+              <a
+                href="#contact"
+                className="text-sm text-ink-400 hover:text-white transition-colors"
+              >
                 Start a Project
-              </a>
-              <a href="#portfolio" className="text-sm text-ink-400 hover:text-white transition-colors">
-                View Portfolio
-              </a>
-              <a href="#about" className="text-sm text-ink-400 hover:text-white transition-colors">
-                About
-              </a>
-              <a href="#contact" className="text-sm text-ink-400 hover:text-white transition-colors">
-                Contact
               </a>
             </div>
           </div>
@@ -52,8 +49,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-ink-500">
-            © {new Date().getFullYear()} STUDIO. All sample projects are concept work, replaceable with
-            real client projects.
+            &copy; {new Date().getFullYear()} RB CATS. All rights reserved.
           </p>
           <a
             href="#home"

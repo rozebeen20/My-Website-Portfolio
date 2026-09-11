@@ -13,8 +13,9 @@ export const px = (id, w = 1200) => {
 }
 
 export const headerLinks = [
+  { label: 'Work', href: '#work' },
+  { label: 'Creative', href: '#creative' },
   { label: 'Services', href: '#services' },
-  { label: 'Portfolio', href: '#portfolio' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ]
@@ -139,6 +140,202 @@ export const footerServices = [
   'Digital Marketing',
 ]
 
+export const navLinks = [
+  { label: 'Work', href: '#work' },
+  { label: 'Creative', href: '#creative' },
+  { label: 'Services', href: '#services' },
+  { label: 'About', href: '#about' },
+  { label: 'Contact', href: '#contact' },
+]
+
+export const capabilityStripItems = [
+  'FUNNELS',
+  'CRO',
+  'E-COMMERCE',
+  'WEB DEVELOPMENT',
+  'VIDEO',
+  'PERFORMANCE CREATIVE',
+]
+
+export const selectedWork = [
+  {
+    id: 'sw-01',
+    number: '01',
+    title: 'DTC Funnel Builder Portfolio',
+    category: 'DTC FUNNELS • CRO',
+    description:
+      'An end-to-end DTC funnel portfolio covering pre-sale experiences, quiz/product discovery, personalized matching, PDP optimization, checkout UX, and CRO thinking.',
+    visual: 'funnel',
+    cta: {
+      label: 'VIEW LIVE FUNNEL PORTFOLIO',
+      href: 'https://my-funnel-builder-portfolio.vercel.app',
+      external: true,
+    },
+  },
+  {
+    id: 'sw-02',
+    number: '02',
+    title: 'Minotti Luxury Furniture',
+    category: 'WEB DESIGN • E-COMMERCE',
+    description:
+      'A refined digital experience combining editorial design, responsive development, and luxury e-commerce storytelling.',
+    isPlaceholder: true,
+    placeholderTitle: 'MINOTTI',
+    placeholderSubtitle: 'Luxury Furniture Website',
+    placeholderCategory: 'WEB DESIGN • E-COMMERCE',
+    cta: { label: 'VIEW LIVE WEBSITE', href: 'https://minotti-website.onrender.com', external: true },
+  },
+  {
+    id: 'sw-03',
+    number: '03',
+    title: 'LUMEN — Luxury Lighting',
+    category: 'E-COMMERCE • WEB DEVELOPMENT',
+    description:
+      'A premium lighting storefront designed around product discovery, visual storytelling, and conversion-focused e-commerce UX.',
+    isPlaceholder: true,
+    placeholderTitle: 'LUMEN',
+    placeholderSubtitle: 'Luxury Lighting E-commerce',
+    placeholderCategory: 'E-COMMERCE • WEB DEVELOPMENT',
+    cta: { label: 'VIEW LIVE WEBSITE', href: 'https://lumen-shop-website.vercel.app/', external: true },
+  },
+  {
+    id: 'sw-04',
+    number: '04',
+    title: 'Performance Video Creative',
+    category: 'VIDEO • PERFORMANCE CREATIVE',
+    description:
+      'Product commercials, paid social video, and motion-driven creative designed to convert.',
+    projectRef: 'video-01',
+    cta: { label: 'VIEW VIDEO', href: '#services' },
+  },
+  {
+    id: 'sw-05',
+    number: '05',
+    title: 'Static Ads & Performance Creative',
+    category: 'STATIC ADS • PERFORMANCE CREATIVE',
+    description:
+      'Scroll-stopping ad creatives for paid social with benefit-driven copy and premium design.',
+    projectRef: 'ads-01',
+    cta: { label: 'VIEW CREATIVE', href: '#services' },
+  },
+  {
+    id: 'sw-06',
+    number: '06',
+    title: 'Creative & Marketing Strategy',
+    category: 'MARKETING STRATEGY • RESEARCH',
+    description:
+      'Competitor analysis, ad research, audience strategy, and campaign concepts with creative direction.',
+    visual: 'strategy',
+    cta: { label: 'VIEW PROJECT', href: '#services' },
+  },
+]
+
+export const capabilityCards = [
+  {
+    id: 'cc-01',
+    title: 'DTC Funnels & CRO',
+    skills: [
+      'Funnel Strategy',
+      'Landing Pages',
+      'Pre-Sale Pages',
+      'Advertorials',
+      'Quiz Funnels',
+      'Product Funnels',
+      'Upsells / Downsells',
+      'Conversion Optimization',
+      'A/B Testing',
+      'Customer Journey Mapping',
+    ],
+    cta: { label: 'EXPLORE FUNNELS', href: '#work' },
+  },
+  {
+    id: 'cc-02',
+    title: 'Web & E-Commerce',
+    skills: [
+      'Frontend Development',
+      'Responsive Websites',
+      'React',
+      'Next.js',
+      'JavaScript',
+      'E-commerce UX',
+      'Product Pages',
+      'Conversion-Focused Websites',
+      'API Integration',
+    ],
+    cta: { label: 'EXPLORE WEB WORK', href: '#work' },
+  },
+  {
+    id: 'cc-03',
+    title: 'Video & Motion',
+    skills: [
+      'Paid Social Video',
+      'Product Videos',
+      'Short-Form Video',
+      'Long-Form Video',
+      'Motion Graphics',
+      'Promotional Content',
+      'Video Editing',
+    ],
+    cta: { label: 'EXPLORE VIDEO', href: '#work' },
+  },
+  {
+    id: 'cc-04',
+    title: 'Static Ads & Creative',
+    skills: [
+      'Static Ads',
+      'Paid Social Creative',
+      'Product Creative',
+      'Amazon Creative',
+      'Social Graphics',
+      'Graphic Design',
+      'Creative Direction',
+    ],
+    cta: { label: 'EXPLORE CREATIVE', href: '#work' },
+  },
+]
+
+export const differentiatorFlow = [
+  'CREATIVE',
+  'TRAFFIC',
+  'FUNNEL',
+  'EXPERIENCE',
+  'CONVERSION',
+]
+
+export const skillsCategories = [
+  {
+    title: 'Development',
+    skills: ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Vite', 'Tailwind CSS', 'Node.js', 'Express.js', 'REST APIs', 'Git', 'GitHub'],
+  },
+  {
+    title: 'E-Commerce',
+    skills: ['Shopify', 'Shopify Liquid', 'Product Pages', 'Collection Pages', 'E-commerce UX', 'Conversion-Focused UI'],
+  },
+  {
+    title: 'Funnels & CRO',
+    skills: ['Funnel Strategy', 'Landing Pages', 'Pre-Sale Pages', 'Advertorials', 'Quiz Funnels', 'CRO', 'A/B Testing', 'Customer Journey Mapping'],
+  },
+  {
+    title: 'Creative',
+    skills: ['Photoshop', 'Illustrator', 'Figma', 'Canva', 'Premiere Pro', 'After Effects', 'Motion Graphics', 'Video Editing'],
+  },
+  {
+    title: 'Marketing',
+    skills: ['Meta Ads', 'Google Ads', 'SEO', 'Content Marketing', 'Audience Research', 'Competitor Research', 'Campaign Strategy', 'Performance Analysis'],
+  },
+  {
+    title: 'AI & Automation',
+    skills: ['AI Image Generation', 'AI Video Creation', 'AI Content Creation', 'Prompt Engineering', 'AI Automation', 'AI Web Development', 'AI Chatbot Integration', 'Generative AI Workflows'],
+  },
+]
+
+export const footerLinks = [
+  { label: 'Work', href: '#work' },
+  { label: 'Services', href: '#services' },
+  { label: 'About', href: '#about' },
+  { label: 'Contact', href: '#contact' },
+]
+
 export const projects = [
   {
     id: 'web-01',
@@ -146,11 +343,23 @@ export const projects = [
     category: 'web',
     categoryLabel: 'Web Design',
     description:
-      'Premium architectural studio website with large-scale photography, elegant typography, and a sophisticated project gallery.',
-    tools: ['Figma', 'React', 'GSAP', 'Tailwind CSS'],
+      'A high-end responsive website combining modern frontend development, interactive motion, performance-focused layouts, and a premium visual experience.',
+    tools: [
+      'HTML5',
+      'CSS3',
+      'JavaScript',
+      'React',
+      'Vite',
+      'Tailwind CSS',
+      'GSAP',
+      'Responsive Design',
+      'REST API',
+      'Git',
+      'GitHub',
+    ],
     image: px(35142390),
     aspect: 'wide',
-    role: 'Lead Web Designer & Developer',
+    role: 'Web Developer & Digital Creative',
     overview:
       'A full redesign for a high-end architecture firm seeking a digital presence that mirrors the scale and refinement of their physical work. The site uses immersive full-bleed photography, a restrained type system, and smooth scroll-driven transitions.',
     creativeDirection:
@@ -1083,5 +1292,401 @@ export const projects = [
     approach:
       'Designed the main listing image, product infographics with feature callouts, A+ content modules, a brand storefront with category navigation, and sponsored ad creative — all with a unified visual system.',
     gallery: [px(17604755), px(13013778), px(17820733)],
+  },
+]
+
+export const CREATIVE_VIDEO = '/creative/video'
+export const CREATIVE_STATIC = '/creative/static-ads'
+export const CREATIVE_GRAPHIC = '/creative/graphic-design'
+export const CREATIVE_EMAIL = '/creative/email-marketing'
+
+export const videoPortfolio = [
+  {
+    id: 'video-wardiere',
+    title: 'Wardiere Residence',
+    category: 'video',
+    categoryLabel: 'Video & Motion',
+    group: 'featured',
+    type: 'video',
+    src: `${CREATIVE_VIDEO}/wardiere-residence.mp4`,
+    description:
+      'Featured long-form brand film — cinematic interior residence showcase.',
+  },
+  {
+    id: 'video-0824',
+    title: '0824',
+    category: 'video',
+    categoryLabel: 'Video & Motion',
+    group: 'featured',
+    type: 'video',
+    src: `${CREATIVE_VIDEO}/0824.mp4`,
+    description:
+      'Featured long-form film — atmospheric narrative edit.',
+  },
+  {
+    id: 'video-casio',
+    title: 'CASIO Watch',
+    category: 'video',
+    categoryLabel: 'Video & Motion',
+    group: 'performance',
+    type: 'video',
+    src: `${CREATIVE_VIDEO}/casio-watch-ads.mp4`,
+    description:
+      'Performance social ad for CASIO timepieces.',
+  },
+  {
+    id: 'video-hair',
+    title: 'Hair Supplement',
+    category: 'video',
+    categoryLabel: 'Video & Motion',
+    group: 'performance',
+    type: 'video',
+    src: `${CREATIVE_VIDEO}/hair-supplement-ads.mp4`,
+    description:
+      'Performance creative for a hair supplement brand.',
+  },
+  {
+    id: 'video-hikari',
+    title: 'Hikari',
+    category: 'video',
+    categoryLabel: 'Video & Motion',
+    group: 'performance',
+    type: 'video',
+    src: `${CREATIVE_VIDEO}/hikari-ads.mp4`,
+    description:
+      'Social ad creative for Hikari.',
+  },
+  {
+    id: 'video-0829',
+    title: '0829',
+    category: 'video',
+    categoryLabel: 'Video & Motion',
+    group: 'performance',
+    type: 'video',
+    src: `${CREATIVE_VIDEO}/0829.mp4`,
+    description:
+      'Performance short-form edit.',
+  },
+  {
+    id: 'video-nike',
+    title: 'Nike',
+    category: 'video',
+    categoryLabel: 'Video & Motion',
+    group: 'performance',
+    type: 'video',
+    src: `${CREATIVE_VIDEO}/nike-ads.mp4`,
+    description:
+      'Performance ad creative for Nike.',
+  },
+  {
+    id: 'video-cayene',
+    title: 'Cayene',
+    category: 'video',
+    categoryLabel: 'Video & Motion',
+    group: 'performance',
+    type: 'video',
+    src: `${CREATIVE_VIDEO}/cayene-ads.mp4`,
+    description:
+      'Performance ad creative for Cayene.',
+  },
+  {
+    id: 'video-vit-d3',
+    title: 'Vit D3',
+    category: 'video',
+    categoryLabel: 'Video & Motion',
+    group: 'performance',
+    type: 'video',
+    src: `${CREATIVE_VIDEO}/vit-d3-promotion.mp4`,
+    description:
+      'Product video promotion for a Vit D3 supplement.',
+  },
+  {
+    id: 'video-goli',
+    title: 'Goli Gummies',
+    category: 'video',
+    categoryLabel: 'Video & Motion',
+    group: 'performance',
+    type: 'video',
+    src: `${CREATIVE_VIDEO}/goli-gummies-promotion.mp4`,
+    description:
+      'Product video promotion for Goli gummies.',
+  },
+]
+
+export const staticAdsPortfolio = [
+  {
+    id: 'static-01',
+    title: 'Crispier. Tastier. Happier.',
+    category: 'static-ads',
+    categoryLabel: 'Static Ads & Creative',
+    type: 'image',
+    src: `${CREATIVE_STATIC}/01_KFC_Crispier_Tastier_Happier.png`,
+    description: 'KFC performance ad creative.',
+  },
+  {
+    id: 'static-02',
+    title: 'Good Coffee, Better Days',
+    category: 'static-ads',
+    categoryLabel: 'Static Ads & Creative',
+    type: 'image',
+    src: `${CREATIVE_STATIC}/02_Corner_Cafe_Good_Coffee_Better_Days.png`,
+    description: 'Corner Café ad creative.',
+  },
+  {
+    id: 'static-03',
+    title: 'Smart Focus Today',
+    category: 'static-ads',
+    categoryLabel: 'Static Ads & Creative',
+    type: 'image',
+    src: `${CREATIVE_STATIC}/03_Ginkgo_Smart_Focus_Today.png`,
+    description: 'Ginkgo supplement ad creative.',
+  },
+  {
+    id: 'static-04',
+    title: 'A Scent',
+    category: 'static-ads',
+    categoryLabel: 'Static Ads & Creative',
+    type: 'image',
+    src: `${CREATIVE_STATIC}/04_Victorias_Secret_A_Scent.png`,
+    description: "Victoria's Secret fragrance ad creative.",
+  },
+  {
+    id: 'static-05',
+    title: 'Fresh Floral',
+    category: 'static-ads',
+    categoryLabel: 'Static Ads & Creative',
+    type: 'image',
+    src: `${CREATIVE_STATIC}/05_Victorias_Secret_Fresh_Floral.png`,
+    description: "Victoria's Secret fragrance ad creative.",
+  },
+  {
+    id: 'static-06',
+    title: 'Dewy Skin Starts Here',
+    category: 'static-ads',
+    categoryLabel: 'Static Ads & Creative',
+    type: 'image',
+    src: `${CREATIVE_STATIC}/06_Dewy_Skin_Starts_Here.png`,
+    description: 'Skincare product ad creative.',
+  },
+  {
+    id: 'static-07',
+    title: 'Peak Performance',
+    category: 'static-ads',
+    categoryLabel: 'Static Ads & Creative',
+    type: 'image',
+    src: `${CREATIVE_STATIC}/07_B157_Peak_Performance.png`,
+    description: 'B157 supplement ad creative.',
+  },
+  {
+    id: 'static-08',
+    title: 'Brewed For Your Moments',
+    category: 'static-ads',
+    categoryLabel: 'Static Ads & Creative',
+    type: 'image',
+    src: `${CREATIVE_STATIC}/08_Corner_Cafe_Brewed_For_Your_Moments.png`,
+    description: 'Corner Café ad creative.',
+  },
+  {
+    id: 'static-09',
+    title: 'Scents & Stories: Catch-22',
+    category: 'static-ads',
+    categoryLabel: 'Static Ads & Creative',
+    type: 'image',
+    src: `${CREATIVE_STATIC}/09_Scents_Stories_Catch_22.png`,
+    description: 'Fragrance storytelling ad creative.',
+  },
+  {
+    id: 'static-10',
+    title: 'Beauty In Every Perspective',
+    category: 'static-ads',
+    categoryLabel: 'Static Ads & Creative',
+    type: 'image',
+    src: `${CREATIVE_STATIC}/10_Beauty_In_Every_Perspective.png`,
+    description: 'Beauty brand ad creative.',
+  },
+  {
+    id: 'static-11',
+    title: 'Email Marketing That Drives Results',
+    category: 'static-ads',
+    categoryLabel: 'Static Ads & Creative',
+    type: 'image',
+    src: `${CREATIVE_STATIC}/11_Email_Marketing_That_Drives_Results.png`,
+    description: 'Email marketing service ad creative.',
+  },
+  {
+    id: 'static-12',
+    title: 'Live Bold',
+    category: 'static-ads',
+    categoryLabel: 'Static Ads & Creative',
+    type: 'image',
+    src: `${CREATIVE_STATIC}/12_MAKA_Home_Live_Bold.png`,
+    description: 'MAKA Home brand ad creative.',
+  },
+]
+
+export const graphicDesignPortfolio = [
+  {
+    id: 'gd-a',
+    title: 'Graphic Design — A',
+    category: 'graphic-design',
+    categoryLabel: 'Graphic Design',
+    type: 'image',
+    src: `${CREATIVE_GRAPHIC}/graphic-a.png`,
+    description: 'Approved graphic design artwork.',
+  },
+  {
+    id: 'gd-b',
+    title: 'Graphic Design — B',
+    category: 'graphic-design',
+    categoryLabel: 'Graphic Design',
+    type: 'image',
+    src: `${CREATIVE_GRAPHIC}/graphic-b.png`,
+    description: 'Approved graphic design artwork.',
+  },
+  {
+    id: 'gd-c',
+    title: 'Graphic Design — C',
+    category: 'graphic-design',
+    categoryLabel: 'Graphic Design',
+    type: 'image',
+    src: `${CREATIVE_GRAPHIC}/graphic-c.png`,
+    description: 'Approved graphic design artwork.',
+  },
+  {
+    id: 'gd-d',
+    title: 'Graphic Design — D',
+    category: 'graphic-design',
+    categoryLabel: 'Graphic Design',
+    type: 'image',
+    src: `${CREATIVE_GRAPHIC}/graphic-d.png`,
+    description: 'Approved graphic design artwork.',
+  },
+  {
+    id: 'gd-e',
+    title: 'Graphic Design — E',
+    category: 'graphic-design',
+    categoryLabel: 'Graphic Design',
+    type: 'image',
+    src: `${CREATIVE_GRAPHIC}/graphic-e.png`,
+    description: 'Approved graphic design artwork.',
+  },
+  {
+    id: 'gd-f',
+    title: 'Graphic Design — F',
+    category: 'graphic-design',
+    categoryLabel: 'Graphic Design',
+    type: 'image',
+    src: `${CREATIVE_GRAPHIC}/graphic-f.png`,
+    description: 'Approved graphic design artwork.',
+  },
+  {
+    id: 'gd-g',
+    title: 'Graphic Design — G',
+    category: 'graphic-design',
+    categoryLabel: 'Graphic Design',
+    type: 'image',
+    src: `${CREATIVE_GRAPHIC}/graphic-g.png`,
+    description: 'Approved graphic design artwork.',
+  },
+  {
+    id: 'gd-h',
+    title: 'Graphic Design — H',
+    category: 'graphic-design',
+    categoryLabel: 'Graphic Design',
+    type: 'image',
+    src: `${CREATIVE_GRAPHIC}/graphic-h.png`,
+    description: 'Approved graphic design artwork.',
+  },
+  {
+    id: 'gd-i',
+    title: 'Graphic Design — I',
+    category: 'graphic-design',
+    categoryLabel: 'Graphic Design',
+    type: 'image',
+    src: `${CREATIVE_GRAPHIC}/graphic-i.png`,
+    description: 'Approved graphic design artwork.',
+  },
+  {
+    id: 'gd-j',
+    title: 'Graphic Design — J',
+    category: 'graphic-design',
+    categoryLabel: 'Graphic Design',
+    type: 'image',
+    src: `${CREATIVE_GRAPHIC}/graphic-j.png`,
+    description: 'Approved graphic design artwork.',
+  },
+]
+
+export const emailMarketingPortfolio = [
+  {
+    id: 'email-lumiere',
+    title: 'Lumière Email Campaign',
+    category: 'email-marketing',
+    categoryLabel: 'Email Marketing',
+    type: 'image',
+    src: `${CREATIVE_EMAIL}/01_Lumiere_Email_Campaign.png`,
+    description:
+      'Long-form luxury email campaign — oversized product storytelling.',
+  },
+  {
+    id: 'email-solara',
+    title: 'Solara Email Campaign',
+    category: 'email-marketing',
+    categoryLabel: 'Email Marketing',
+    type: 'image',
+    src: `${CREATIVE_EMAIL}/02_Solara_Email_Campaign.png`,
+    description:
+      'Long-form lifestyle email campaign — floating product compositing.',
+  },
+  {
+    id: 'email-corner-cafe',
+    title: 'Corner Café Email Campaign',
+    category: 'email-marketing',
+    categoryLabel: 'Email Marketing',
+    type: 'image',
+    src: `${CREATIVE_EMAIL}/03_Corner_Cafe_Email_Campaign.png`,
+    description:
+      'Long-form café email campaign — editorial product storytelling.',
+  },
+  {
+    id: 'email-purely',
+    title: 'Purely Orange Juice Email Campaign',
+    category: 'email-marketing',
+    categoryLabel: 'Email Marketing',
+    type: 'image',
+    src: `${CREATIVE_EMAIL}/04_Purely_Orange_Juice_Email_Campaign.png`,
+    description:
+      'Long-form beverage email campaign — liquid effects and gradient transitions.',
+  },
+]
+
+export const creativePortfolio = [
+  {
+    id: 'video',
+    label: 'VIDEO & MOTION',
+    sublabel: 'FILM · EDIT · MOTION',
+    type: 'video',
+    items: videoPortfolio,
+  },
+  {
+    id: 'static-ads',
+    label: 'STATIC ADS & CREATIVE',
+    sublabel: 'PERFORMANCE · SOCIAL · PRODUCT',
+    type: 'image',
+    items: staticAdsPortfolio,
+  },
+  {
+    id: 'graphic-design',
+    label: 'GRAPHIC DESIGN',
+    sublabel: 'BRAND · PRODUCT · EDITORIAL',
+    type: 'image',
+    items: graphicDesignPortfolio,
+  },
+  {
+    id: 'email-marketing',
+    label: 'EMAIL MARKETING',
+    sublabel: 'DTC · STORYTELLING · CONVERSION',
+    type: 'image',
+    items: emailMarketingPortfolio,
   },
 ]

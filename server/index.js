@@ -26,10 +26,6 @@ const EMAIL_FROM = process.env.EMAIL_FROM || GMAIL_USER
 const RESEND_API_KEY = process.env.RESEND_API_KEY || ''
 const RESEND_FROM = process.env.RESEND_FROM || '"Portfolio Contact" <onboarding@resend.dev>'
 
-// Resend delivers email over HTTPS, so it works on hosts that block outbound
-// SMTP (e.g. Render Free). Created once; fails at send time if the key is missing.
-const resend = new Resend(RESEND_API_KEY)
-
 // The exact origin(s) allowed to talk to this API. Never "*".
 const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175']
 const frontendUrl = process.env.FRONTEND_URL || process.env.CLIENT_URL
@@ -125,6 +121,8 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
       error: 'Server email is not configured. Please contact the site owner directly.',
     })
   }
+
+  const resend = new Resend(RESEND_API_KEY)
 
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

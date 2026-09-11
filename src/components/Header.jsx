@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
-import { headerLinks } from '../data'
+import { navLinks } from '../data'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -12,6 +12,15 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -21,14 +30,16 @@ export default function Header() {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 group">
-          <span className="text-2xl font-display font-bold tracking-tight text-white">
-            STUDIO<span className="text-accent-400">.</span>
-          </span>
+        <a href="#home" className="flex items-center gap-2">
+          <img
+            src="/logo.png"
+            alt="RB CATS"
+            className="h-10 w-auto object-contain"
+          />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {headerLinks.map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -42,7 +53,7 @@ export default function Header() {
             href="#contact"
             className="flex items-center gap-1.5 text-sm font-semibold text-ink-950 bg-accent-400 hover:bg-accent-300 px-5 py-2.5 rounded-full transition-all duration-300 hover:gap-2.5"
           >
-            Start a Project
+            LET'S TALK
             <ArrowUpRight className="w-4 h-4" />
           </a>
         </div>
@@ -57,14 +68,14 @@ export default function Header() {
       </nav>
 
       {menuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-ink-950/95 backdrop-blur-xl border-b border-white/5 animate-fade-in">
-          <div className="flex flex-col px-6 py-6 gap-4">
-            {headerLinks.map((link) => (
+        <div className="md:hidden fixed inset-0 top-[60px] bg-ink-950/98 backdrop-blur-xl animate-fade-in z-40">
+          <div className="flex flex-col px-6 py-8 gap-6">
+            {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-base font-medium text-ink-300 hover:text-white transition-colors"
+                className="text-lg font-medium text-ink-300 hover:text-white transition-colors"
               >
                 {link.label}
               </a>
@@ -72,9 +83,9 @@ export default function Header() {
             <a
               href="#contact"
               onClick={() => setMenuOpen(false)}
-              className="flex items-center justify-center gap-1.5 text-sm font-semibold text-ink-950 bg-accent-400 px-5 py-3 rounded-full mt-2"
+              className="flex items-center justify-center gap-1.5 text-sm font-semibold text-ink-950 bg-accent-400 px-5 py-3 rounded-full mt-4"
             >
-              Start a Project
+              LET'S TALK
               <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>

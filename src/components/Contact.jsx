@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AlertCircle, Check, Loader2, Mail, MessageCircle } from 'lucide-react'
+import { AlertCircle, Check, Loader2, Mail } from 'lucide-react'
 
 export default function Contact() {
   const [name, setName] = useState('')
@@ -68,15 +68,17 @@ export default function Contact() {
       </div>
 
       <div className="relative max-w-4xl mx-auto text-center">
-        <span className="text-sm font-medium text-accent-400 tracking-widest uppercase">Get in Touch</span>
+        <span className="text-sm font-medium text-accent-400 tracking-widest uppercase">
+          Get in Touch
+        </span>
         <h2 className="mt-4 font-display text-4xl md:text-6xl font-bold text-white text-balance">
           Let's build something
           <br />
           <span className="text-gradient italic">worth showing off.</span>
         </h2>
         <p className="mt-6 text-lg text-ink-400 leading-relaxed max-w-2xl mx-auto">
-          Whether you need a full website rebuild, a high-converting ad campaign, or a complete brand
-          identity — I'm ready to help. Tell me about your project.
+          Whether you need a high-converting funnel, a conversion-focused website, performance
+          creative, or a complete digital system — I'm ready to help. Tell me about your project.
         </p>
 
         <div className="mt-12 max-w-xl mx-auto">
@@ -147,18 +149,6 @@ export default function Contact() {
               <span className="text-left">{errorMsg}</span>
             </div>
           ) : null}
-        </div>
-
-        <div className="mt-8 flex items-center justify-center gap-6 text-sm text-ink-400">
-          <a href="mailto:hello@studio.com" className="flex items-center gap-2 hover:text-white transition-colors">
-            <Mail className="w-4 h-4" />
-            hello@studio.com
-          </a>
-          <span className="w-px h-4 bg-white/10" />
-          <a href="#" className="flex items-center gap-2 hover:text-white transition-colors">
-            <MessageCircle className="w-4 h-4" />
-            Book a call
-          </a>
         </div>
       </div>
     </section>

@@ -1,11 +1,10 @@
 import { ArrowUpRight } from 'lucide-react'
-import { px } from '../data'
 
 export default function About() {
   return (
     <section id="about" className="relative py-32 px-6 overflow-hidden">
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/2 left-0 w-64 h-64 bg-accent-500/20 rounded-full blur-[100px]" />
+      <div className="absolute inset-0 opacity-15">
+        <div className="absolute top-1/2 left-0 w-64 h-64 bg-accent-500/15 rounded-full blur-[100px]" />
       </div>
 
       <div className="relative max-w-5xl mx-auto">
@@ -13,8 +12,8 @@ export default function About() {
           <div className="lg:col-span-2">
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
               <img
-                src={px(6322366, 800)}
-                alt="Creative professional"
+                src="/Screenshot 2026-08-21 153858.png"
+                alt="RB CATS — Digital Creative"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 to-transparent" />
@@ -22,23 +21,29 @@ export default function About() {
           </div>
 
           <div className="lg:col-span-3">
-            <span className="text-sm font-medium text-accent-400 tracking-widest uppercase">About</span>
+            <span className="text-sm font-medium text-accent-400 tracking-widest uppercase">
+              About
+            </span>
             <h2 className="mt-4 font-display text-3xl md:text-4xl font-bold text-white text-balance">
-              A creative studio built for brands that refuse to blend in.
+              ABOUT RB CATS
             </h2>
             <p className="mt-6 text-base md:text-lg text-ink-300 leading-relaxed">
-              I work across eight creative disciplines — from web design and e-commerce to advertising,
-              video, 3D, and digital strategy. The goal is always the same: work that looks like it
-              belongs at the top of the industry, not in the middle of the feed.
+              I'm a multidisciplinary digital creative focused on DTC growth, conversion-focused
+              experiences, e-commerce, web development, and performance creative.
             </p>
             <p className="mt-4 text-base md:text-lg text-ink-300 leading-relaxed">
-              The portfolio you see here contains sample and concept projects that demonstrate the
-              quality and range of what I deliver. Every project is designed to be replaced with real
-              client work — the structure is built for it.
+              I work across strategy, development, and creative — connecting funnel thinking,
+              web experience, and performance creative into one cohesive system designed to convert.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              {['Design-First', 'Conversion-Focused', 'Full-Service', 'Fast Turnaround'].map((tag) => (
+              {[
+                'DTC Funnels',
+                'Web Development',
+                'E-Commerce',
+                'Performance Creative',
+                'Video & Motion',
+              ].map((tag) => (
                 <span
                   key={tag}
                   className="text-xs font-medium text-ink-200 px-4 py-2 rounded-full bg-ink-800/50 border border-white/5"
