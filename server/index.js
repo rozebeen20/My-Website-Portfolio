@@ -17,6 +17,7 @@ const distDir = path.join(rootDir, 'dist')
 dotenv.config({ path: path.join(serverDir, '.env') })
 
 const app = express()
+app.set('trust proxy', 1)
 const PORT = process.env.PORT || 3001
 
 const EMAIL_TO = process.env.EMAIL_TO || 'rozebeen.20@gmail.com'
@@ -27,7 +28,10 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY || ''
 const RESEND_FROM = process.env.RESEND_FROM || '"Portfolio Contact" <onboarding@resend.dev>'
 
 // The exact origin(s) allowed to talk to this API. Never "*".
-const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175']
+const allowedOrigins = []
+if (process.env.NODE_ENV !== 'production') {
+  allowedOrigins.push('http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175')
+}
 const frontendUrl = process.env.FRONTEND_URL || process.env.CLIENT_URL
 if (frontendUrl) {
   allowedOrigins.push(frontendUrl.trim())
@@ -38,8 +42,6 @@ app.use(helmet())
 app.use(
   cors({
     origin(origin, callback) {
-      console.log('incoming origin:', origin);
-      console.log('allowed origins:', allowedOrigins);
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true)
       }
@@ -57,6 +59,7 @@ const contactLimiter = rateLimit({
   max: 5,
   standardHeaders: true,
   legacyHeaders: false,
+  validate: { trustProxy: true },
   message: {
     success: false,
     error: 'Too many requests. Please try again in 15 minutes.',
@@ -107,7 +110,7 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
   // Strip line breaks before these values are ever placed into email
   // headers (subject / from / replyTo) to block header injection.
   const safeName = validator.escape(name.replace(/[\r\n]+/g, ' '))
-  const safeEmail = validator.normalizeEmail(validator.escape(email.replace(/[\r\n]+/g, ''))) ?? email
+  const safeEmail = validator.normalizeEmail(validator.escape(email.replace(/[\r\n]+/g, ''))) || email
   const safeMessage = validator.escape(message.replace(/\r\n/g, '\n')).replace(/\n/g, '<br/>')
 
   const submittedAt = new Intl.DateTimeFormat('en-US', {
